@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,15 @@ public class Player : MonoBehaviour {
     private SpecialBarController specialBarController;
 
     [SerializeField]
+    private float healthPoints;
+    [SerializeField]
+    private float maxHealthPoints;
+
+    [SerializeField]
     private float specialPoints;
     [SerializeField]
     private bool specialAvaliable;
+
     [SerializeField]
     private float maxSpecialPoints;
 
@@ -28,6 +35,7 @@ public class Player : MonoBehaviour {
     private void Awake()
     {
         specialPoints = 0.0f;
+        healthPoints = maxHealthPoints = 100.0f;
         specialAvaliable = false;
     }
 
@@ -52,5 +60,19 @@ public class Player : MonoBehaviour {
             specialAvaliable = true;
             specialBarController.SpecialAvaliable(specialAvaliable);
         }
+    }
+    public void DamagePlayer(float strength)
+    {
+        healthPoints = Mathf.Clamp(healthPoints - strength, 0.0f, maxHealthPoints);
+        //updatefill
+        if(healthPoints == 0.0f)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("You are dead :(");
     }
 }
