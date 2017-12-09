@@ -6,6 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     [SerializeField]
     private SpecialBarController specialBarController;
+    [SerializeField]
+    private HealthBarController healthBarController;
 
     [SerializeField]
     private float healthPoints;
@@ -64,7 +66,7 @@ public class Player : MonoBehaviour {
     public void DamagePlayer(float strength)
     {
         healthPoints = Mathf.Clamp(healthPoints - strength, 0.0f, maxHealthPoints);
-        //updatefill
+        healthBarController.UpdateFill(healthPoints/maxHealthPoints);
         if(healthPoints == 0.0f)
         {
             Die();
