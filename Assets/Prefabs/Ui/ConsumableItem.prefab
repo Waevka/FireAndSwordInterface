@@ -153,7 +153,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Name
@@ -195,12 +195,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9793d68cf665e8a47a8a4c85dc32524e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemEffectIcons:
+  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   itemImage: {fileID: 0}
   itemName: 
   itemNameTextField: {fileID: 114560598920704238}
   itemImageField: {fileID: 114536754167293362}
   itemIconField: {fileID: 114982288337618656}
+  itemEffectDescriptionField: {fileID: 114983713113916556}
   itemType: 0
+  itemValue: 0
 --- !u!114 &114982288337618656
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -8,6 +8,8 @@ public class HealthBarController : MonoBehaviour {
     Image currentHealth;
     [SerializeField]
     Image damageBar;
+    [SerializeField]
+    Image healingBar;
     // Use this for initialization
     void Start () {
 		
@@ -24,6 +26,11 @@ public class HealthBarController : MonoBehaviour {
         currentHealth.fillAmount = percent;
     }
 
+    public void UpdateHealingFill(float percent)
+    {
+        currentHealth.fillAmount = percent;
+    }
+
     private IEnumerator AnimateDamageBar(float percent)
     {
         yield return new WaitForSeconds(1.0f);
@@ -33,6 +40,17 @@ public class HealthBarController : MonoBehaviour {
             percent = 0.0f;
         }
         yield return null;
+    }
+
+    public void Activate(int value)
+    {
+        float healFillAmount = Mathf.Clamp(value/100.0f + currentHealth.fillAmount, 0.0f, 1.0f);
+        healingBar.fillAmount = healFillAmount;
+    }
+
+    public void Deactivate()
+    {
+        healingBar.fillAmount = 0.0f;
     }
 
 

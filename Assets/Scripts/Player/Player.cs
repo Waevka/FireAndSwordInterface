@@ -22,6 +22,9 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private float maxSpecialPoints;
 
+    [SerializeField]
+    private int playerSpeed;
+
     public static Player Instance
     {
         get
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour {
         specialPoints = 0.0f;
         healthPoints = maxHealthPoints = 100.0f;
         specialAvaliable = false;
+        playerSpeed = 100;
     }
 
     private static Player instance;
@@ -71,6 +75,22 @@ public class Player : MonoBehaviour {
         {
             Die();
         }
+    }
+
+    public void AddSpeed(int speedValue)
+    {
+        playerSpeed += speedValue;
+    }
+
+    public int GetSpeed()
+    {
+        return playerSpeed;
+    }
+
+    public void RestoreHealth(float amount)
+    {
+        healthPoints = Mathf.Clamp(healthPoints + (amount*100), 0.0f, maxHealthPoints);
+        healthBarController.UpdateHealingFill(healthPoints / maxHealthPoints);
     }
 
     private void Die()
