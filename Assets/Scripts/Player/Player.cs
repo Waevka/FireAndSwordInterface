@@ -24,6 +24,10 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private int playerSpeed;
+    [SerializeField]
+    List<StatusEffect> statusEffects;
+    [SerializeField]
+    GameObject SEPrefab;
 
     public static Player Instance
     {
@@ -50,6 +54,11 @@ public class Player : MonoBehaviour {
 	void Start ()
     {
         specialBarController.SpecialAvaliable(specialAvaliable);
+        statusEffects = new List<StatusEffect>();
+        statusEffects.Add(Instantiate(SEPrefab).GetComponent<StatusEffect>());
+        statusEffects.Add(Instantiate(SEPrefab).GetComponent<StatusEffect>());
+        statusEffects[0].InitializeEffect(40, StatusEffectType.BLEED);
+        statusEffects[1].InitializeEffect(120, StatusEffectType.ARMOR);
     }
 	
 	// Update is called once per frame
@@ -96,5 +105,10 @@ public class Player : MonoBehaviour {
     private void Die()
     {
         Debug.Log("You are dead :(");
+    }
+
+    public List<StatusEffect> GetStatusEffects()
+    {
+        return statusEffects;
     }
 }
