@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
     private SpecialBarController specialBarController;
     [SerializeField]
     private HealthBarController healthBarController;
+    [SerializeField]
+    AnimationPlayer animationPlayer;
 
     [SerializeField]
     private float healthPoints;
@@ -126,5 +128,18 @@ public class Player : MonoBehaviour {
                 se.SetTimeLeft(0.0f);
             }
         }
+    }
+
+    public void UseSpecial()
+    {
+        specialAvaliable = false;
+        specialPoints = 0.0f;
+        specialBarController.SpecialAvaliable(specialAvaliable);
+        specialBarController.UpdateFill(specialPoints, maxSpecialPoints);
+    }
+
+    public bool IsSpecialAvaliable()
+    {
+        return specialAvaliable;
     }
 }

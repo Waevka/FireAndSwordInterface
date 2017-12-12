@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
     GameObject menuPanels;
     [SerializeField]
     bool isControllerActive;
+    [SerializeField]
+    AnimationPlayer animationPlayer;
 	// Use this for initialization
 	void Start () {
         isControllerActive = true;
@@ -24,6 +26,31 @@ public class PlayerController : MonoBehaviour {
             isControllerActive = menuPanels.activeSelf;
             menuPanels.SetActive(!menuPanels.activeSelf);
         }
-        
-	}
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animationPlayer.PlayAnimation("BasicAttack");
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            animationPlayer.PlayAnimation("BasicSlash");
+        }
+        if (Input.GetButton("Fire3"))
+        {
+            animationPlayer.PlayAnimation("BasicBlock");
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            animationPlayer.PlayAnimation("BasicStun");
+        }
+        if (Input.GetButtonDown("Submit")
+            && Player.Instance.IsSpecialAvaliable())
+        {
+            animationPlayer.PlayAnimation("SuperAttack");
+            Player.Instance.UseSpecial();
+        }
+
+
+    }
+
+
 }

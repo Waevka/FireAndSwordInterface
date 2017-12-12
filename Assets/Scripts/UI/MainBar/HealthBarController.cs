@@ -28,6 +28,7 @@ public class HealthBarController : MonoBehaviour {
 
     public void UpdateHealingFill(float percent)
     {
+        healingBar.fillAmount = 0.0f;
         currentHealth.fillAmount = percent;
     }
 
