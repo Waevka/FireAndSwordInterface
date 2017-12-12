@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114083210443387482}
   m_Layer: 0
   m_Name: StrongEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,6 +197,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength: 20
+  health: 300
+  isStronger: 1
+  canBeDamaged: 0
 --- !u!136 &136304853525215022
 CapsuleCollider:
   m_ObjectHideFlags: 1

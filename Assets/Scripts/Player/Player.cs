@@ -31,6 +31,8 @@ public class Player : MonoBehaviour {
     [SerializeField]
     GameObject SEPrefab;
     private float levelProgress;
+    [SerializeField]
+    private float currentDamage;
 
     public static Player Instance
     {
@@ -47,6 +49,7 @@ public class Player : MonoBehaviour {
     private void Awake()
     {
         specialPoints = 0.0f;
+        currentDamage = 0.0f;
         healthPoints = maxHealthPoints = 100.0f;
         specialAvaliable = false;
         playerSpeed = 100;
@@ -148,5 +151,29 @@ public class Player : MonoBehaviour {
     public float GetLevelProgress()
     {
         return levelProgress;
+    }
+
+    public void AddLevelProgress(float percent)
+    {
+        levelProgress = Mathf.Clamp(levelProgress + percent, 0.0f, 1.0f);
+        if (levelProgress == 1.0f)
+        {
+            StartBossFight();
+        }
+    }
+
+    private void StartBossFight()
+    {
+        //TODO
+    }
+
+    public float GetCurrentDamage()
+    {
+        return currentDamage;
+    }
+
+    public void SetCurrentDamage(float d)
+    {
+        currentDamage = d;
     }
 }

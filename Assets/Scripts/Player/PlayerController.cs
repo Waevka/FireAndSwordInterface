@@ -28,24 +28,24 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetButtonDown("Fire1"))
         {
-            animationPlayer.PlayAnimation("BasicAttack");
+            animationPlayer.PlayAnimation("BasicAttack", 20.0f, 0.417f);
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            animationPlayer.PlayAnimation("BasicSlash");
+            animationPlayer.PlayAnimation("BasicSlash", 50.0f, 0.667f);
         }
         if (Input.GetButton("Fire3"))
         {
-            animationPlayer.PlayAnimation("BasicBlock");
+            animationPlayer.PlayAnimation("BasicBlock", 0.0f, 0.500f);
         }
         if (Input.GetButtonDown("Jump"))
         {
-            animationPlayer.PlayAnimation("BasicStun");
+            animationPlayer.PlayAnimation("BasicStun", 10.0f, 0.750f);
         }
         if (Input.GetButtonDown("Submit")
             && Player.Instance.IsSpecialAvaliable())
         {
-            animationPlayer.PlayAnimation("SuperAttack");
+            animationPlayer.PlayAnimation("SuperAttack", 300.0f, 1.417f);
             Player.Instance.UseSpecial();
         }
 
