@@ -19,6 +19,10 @@ public class StatusEffect : MonoBehaviour {
         {
             lastUpdateTime = Time.time;
             timeLeft -= 1;
+        } if (timeLeft <= 0)
+        {
+            Player.Instance.RemoveStatusEffect(this);
+            Destroy(gameObject, 1.0f);
         }
 	}
 

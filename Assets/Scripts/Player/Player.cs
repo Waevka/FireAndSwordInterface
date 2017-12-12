@@ -57,8 +57,10 @@ public class Player : MonoBehaviour {
         statusEffects = new List<StatusEffect>();
         statusEffects.Add(Instantiate(SEPrefab).GetComponent<StatusEffect>());
         statusEffects.Add(Instantiate(SEPrefab).GetComponent<StatusEffect>());
-        statusEffects[0].InitializeEffect(40, StatusEffectType.BLEED);
-        statusEffects[1].InitializeEffect(120, StatusEffectType.ARMOR);
+        statusEffects[0].InitializeEffect(10, StatusEffectType.BLEED);
+        statusEffects[0].gameObject.transform.SetParent(transform, false);
+        statusEffects[1].InitializeEffect(30, StatusEffectType.ARMOR);
+        statusEffects[1].gameObject.transform.SetParent(transform, false);
     }
 	
 	// Update is called once per frame
@@ -110,5 +112,10 @@ public class Player : MonoBehaviour {
     public List<StatusEffect> GetStatusEffects()
     {
         return statusEffects;
+    }
+
+    public void RemoveStatusEffect(StatusEffect se)
+    {
+        statusEffects.Remove(se);
     }
 }

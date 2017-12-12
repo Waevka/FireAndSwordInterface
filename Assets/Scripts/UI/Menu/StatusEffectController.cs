@@ -18,6 +18,11 @@ public class StatusEffectController : MonoBehaviour {
 
     private void OnEnable()
     {
+        RetrieveEffectsFromPlayer();
+    }
+
+    private void RetrieveEffectsFromPlayer()
+    {
         statusEffectPanels = new List<GameObject>();
         statusEffects = Player.Instance.GetStatusEffects();
         foreach (Transform child in transform)
@@ -25,7 +30,7 @@ public class StatusEffectController : MonoBehaviour {
             Destroy(child.gameObject);
         }
 
-        foreach(StatusEffect se in statusEffects)
+        foreach (StatusEffect se in statusEffects)
         {
             GameObject g = Instantiate(statusEffectPrefab);
             g.transform.SetParent(transform, false);
@@ -36,7 +41,10 @@ public class StatusEffectController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+		if(statusEffects.Count != statusEffectPanels.Count)
+        {
+            RetrieveEffectsFromPlayer();
+        }
 	}
 
     void UpdateItems()
