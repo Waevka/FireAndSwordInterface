@@ -118,4 +118,13 @@ public class Player : MonoBehaviour {
     {
         statusEffects.Remove(se);
     }
+    public void RemoveStatusEffect(StatusEffectType set)
+    {
+        foreach(StatusEffect se in statusEffects)
+        {
+            if (se.GetEffectType() == set){
+                se.SetTimeLeft(0.0f);
+            }
+        }
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ItemType { CONSUMABLE, HEALTH, SPEED, WEAPON };
+public enum ItemType { CONSUMABLE, HEALTH, SPEED, WEAPON, BLEEDING };
 
 public class Item : MonoBehaviour {
     [SerializeField]

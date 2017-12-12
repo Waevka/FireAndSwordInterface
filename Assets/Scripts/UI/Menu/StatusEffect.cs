@@ -8,6 +8,7 @@ public class StatusEffect : MonoBehaviour {
     [SerializeField]
     StatusEffectType type;
     float lastUpdateTime;
+    float lastEffectTickTime;
 	// Use this for initialization
 	void Start () {
         lastUpdateTime = Time.time;
@@ -19,10 +20,15 @@ public class StatusEffect : MonoBehaviour {
         {
             lastUpdateTime = Time.time;
             timeLeft -= 1;
-        } if (timeLeft <= 0)
+        }
+        if(Time.time - lastEffectTickTime > 3.0f && timeLeft > 0.0 && type == StatusEffectType.BLEED)
         {
-            Player.Instance.RemoveStatusEffect(this);
-            Destroy(gameObject, 1.0f);
+            lastEffectTickTime = Time.time;
+            Player.Instance.DamagePlayer(5);
+        }
+        if (timeLeft <= 0)
+        {
+            EndEffect();
         }
 	}
 
@@ -31,10 +37,21 @@ public class StatusEffect : MonoBehaviour {
         return timeLeft;
     }
 
+    public void SetTimeLeft(float f)
+    {
+        timeLeft = f;
+    }
+
     public void InitializeEffect(float time, StatusEffectType _type)
     {
         timeLeft = time;
         type = _type;
+    }
+
+    public void EndEffect()
+    {
+        Player.Instance.RemoveStatusEffect(this);
+        Destroy(gameObject, 1.0f);
     }
 
     public StatusEffectType GetEffectType()

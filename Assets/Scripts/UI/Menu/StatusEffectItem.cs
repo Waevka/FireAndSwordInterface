@@ -41,4 +41,9 @@ public class StatusEffectItem : MonoBehaviour {
                 break;
         }
     }
+
+    public StatusEffectType GetEffectType()
+    {
+        return type;
+    }
 }

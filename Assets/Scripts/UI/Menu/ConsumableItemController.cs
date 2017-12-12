@@ -19,6 +19,8 @@ public class ConsumableItemController : MonoBehaviour {
     [SerializeField]
     HealthBarController healthBar;
     [SerializeField]
+    StatusEffectController statusEffectBar;
+    [SerializeField]
     GameObject confirmationWindow;
 
     //list<gameitem> hfhfhd;
@@ -64,10 +66,17 @@ public class ConsumableItemController : MonoBehaviour {
                     case ItemType.SPEED:
                         speedText.Activate(finalItem.GetItemValue());
                         healthBar.Deactivate();
+                        statusEffectBar.Deactivate();
                         break;
                     case ItemType.HEALTH:
                         speedText.Deactivate();
                         healthBar.Activate(finalItem.GetItemValue());
+                        statusEffectBar.Deactivate();
+                        break;
+                    case ItemType.BLEEDING:
+                        healthBar.Deactivate();
+                        speedText.Deactivate();
+                        statusEffectBar.Activate(finalItem.GetItemType());
                         break;
                 }
             }
@@ -85,7 +94,7 @@ public class ConsumableItemController : MonoBehaviour {
             Destroy(child.gameObject);
         }
         
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < 4; i++)
         {
             GameObject g = Instantiate(itemPrefab);
             g.transform.SetParent(transform, false);
@@ -106,6 +115,7 @@ public class ConsumableItemController : MonoBehaviour {
         items[0].GetComponent<Item>().Initialize("Speed", imageList[0], ItemType.SPEED, 25);
         items[1].GetComponent<Item>().Initialize("Healing", imageList[0], ItemType.HEALTH, 25);
         items[2].GetComponent<Item>().Initialize("Healing", imageList[0], ItemType.HEALTH, 75);
+        items[3].GetComponent<Item>().Initialize("Bleeding", imageList[0], ItemType.BLEEDING, 1);
     }
 
     public void ConsumeItem(bool success)
@@ -124,6 +134,9 @@ public class ConsumableItemController : MonoBehaviour {
                     break;
                 case ItemType.HEALTH:
                     Player.Instance.RestoreHealth(it.GetItemValue() / 100.0f);
+                    break;
+                case ItemType.BLEEDING:
+                    Player.Instance.RemoveStatusEffect(StatusEffectType.BLEED);
                     break;
             }
             items.RemoveAt(itemIndex);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatusEffectController : MonoBehaviour {
     [SerializeField]
@@ -13,8 +14,8 @@ public class StatusEffectController : MonoBehaviour {
     Sprite statusEffectImage;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        RetrieveEffectsFromPlayer();
+    }
 
     private void OnEnable()
     {
@@ -41,7 +42,7 @@ public class StatusEffectController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(statusEffects.Count != statusEffectPanels.Count)
+		if(Player.Instance.GetStatusEffects().Count != statusEffectPanels.Count)
         {
             RetrieveEffectsFromPlayer();
         }
@@ -54,5 +55,26 @@ public class StatusEffectController : MonoBehaviour {
             statusEffectPanels[i].GetComponent<StatusEffectItem>().Initialize(
                 statusEffects[i], statusEffects[i].GetEffectType(), statusEffectImage);
         }
+    }
+
+    public void Deactivate()
+    {   
+        foreach(GameObject panel in statusEffectPanels)
+        {
+            panel.GetComponent<Image>().enabled = false;
+        }
+    }
+
+    public void Activate(ItemType _type)
+    {
+        foreach (GameObject panel in statusEffectPanels)
+        {
+            if (panel.GetComponent<StatusEffectItem>().GetEffectType() == StatusEffectType.BLEED 
+                && _type == ItemType.BLEEDING)
+            {
+                panel.GetComponent<Image>().enabled = true;
+            }
+        }
+        
     }
 }
