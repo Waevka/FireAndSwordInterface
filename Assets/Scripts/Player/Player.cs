@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
     List<StatusEffect> statusEffects;
     [SerializeField]
     GameObject SEPrefab;
+    private float levelProgress;
 
     public static Player Instance
     {
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour {
         healthPoints = maxHealthPoints = 100.0f;
         specialAvaliable = false;
         playerSpeed = 100;
+        levelProgress = 0.75f;
     }
 
     private static Player instance;
@@ -141,5 +143,10 @@ public class Player : MonoBehaviour {
     public bool IsSpecialAvaliable()
     {
         return specialAvaliable;
+    }
+
+    public float GetLevelProgress()
+    {
+        return levelProgress;
     }
 }
