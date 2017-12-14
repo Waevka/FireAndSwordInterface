@@ -19,7 +19,7 @@ public class AttackCollider : MonoBehaviour {
 	}
 
     private void OnTriggerEnter(Collider other)
-    {   
+    {
         if(other.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().DamageEnemy(
@@ -33,7 +33,7 @@ public class AttackCollider : MonoBehaviour {
     }
 
     public void DisableWeaponCollider()
-    { 
+    {
         weaponCollider.enabled = false;
     }
 }
