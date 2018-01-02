@@ -6,35 +6,23 @@ using UnityEngine.UI;
 
 public class SpecialBarController : MonoBehaviour {
     [SerializeField]
-    RectTransform specialBarFill;
+    Image specialBarFill;
     [SerializeField]
     Image specialIcon;
-    [SerializeField]
-    Vector3 specialBarRotation;
-    [SerializeField]
-    float minimumRotation; //describes lowest level of power
-    [SerializeField]
-    float maximumRotation; //max level of power;
-    [SerializeField]
-    float totalFillRotation;
 
 	// Use this for initialization
 	void Start () {
-        totalFillRotation = 145.0f;
-        minimumRotation = specialBarFill.eulerAngles.z;
-        maximumRotation = minimumRotation - totalFillRotation;
-        specialBarRotation = specialBarFill.eulerAngles;
+        specialBarFill.fillAmount = 0.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        specialBarFill.transform.eulerAngles = specialBarRotation;
     }
 
     public void UpdateFill(float points, float maxpoints)
     {
         float fillPercentage = points / maxpoints;
-        specialBarRotation.z = minimumRotation - (totalFillRotation * fillPercentage);
+        specialBarFill.fillAmount = fillPercentage;
     }
 
      public void SpecialAvaliable(bool isAvaliable)
@@ -50,12 +38,12 @@ public class SpecialBarController : MonoBehaviour {
 
     private void SpecialUnavaliable()
     {
-        specialIcon.color = Color.grey;
+        specialIcon.enabled = false;
     }
 
     private void SpecialAvaliable()
     {
 
-        specialIcon.color = Color.white;
+        specialIcon.enabled = true;
     }
 }

@@ -11,7 +11,7 @@ public class StatusEffectController : MonoBehaviour {
     [SerializeField]
     GameObject statusEffectPrefab;
     [SerializeField]
-    Sprite statusEffectImage;
+    List<Sprite> statusEffectImage;
 	// Use this for initialization
 	void Start () {
         RetrieveEffectsFromPlayer();
@@ -53,7 +53,7 @@ public class StatusEffectController : MonoBehaviour {
         for(int i = 0; i < statusEffectPanels.Count; i++)
         {
             statusEffectPanels[i].GetComponent<StatusEffectItem>().Initialize(
-                statusEffects[i], statusEffects[i].GetEffectType(), statusEffectImage);
+                statusEffects[i], statusEffects[i].GetEffectType(), statusEffectImage[i]);
         }
     }
 
