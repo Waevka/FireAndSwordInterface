@@ -10,6 +10,10 @@ public class MenuController : MonoBehaviour {
     GameObject[] tabLabels;
     [SerializeField]
     GameObject[] tabs;
+    [SerializeField]
+    Sprite selectedTabBg;
+    [SerializeField]
+    Sprite notSelectedTabBg;
     private void Awake()
     {
         currentActiveTab = 0;
@@ -44,12 +48,12 @@ public class MenuController : MonoBehaviour {
         {
             if(i == currentActiveTab)
             {
-                tabLabels[i].GetComponent<Image>().color = Color.white;
+                tabLabels[i].GetComponent<Image>().sprite = selectedTabBg;
                 tabs[i].SetActive(true);
             }
             else
             {
-                tabLabels[i].GetComponent<Image>().color = Color.black;
+                tabLabels[i].GetComponent<Image>().sprite = notSelectedTabBg;
                 tabs[i].SetActive(false);
             }
         }
