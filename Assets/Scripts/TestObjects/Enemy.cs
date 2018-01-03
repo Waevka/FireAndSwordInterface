@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour {
     }
 
     public void DamageEnemy(float damage)
-    {
+    {   
         if (!canBeDamaged) return;
         health = Mathf.Clamp(health - damage, 0, maxHealth);
         Debug.Log("Damaged " + gameObject.name + " for " + damage + ", left: " + health);

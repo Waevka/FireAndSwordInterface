@@ -8,10 +8,12 @@ public class SpecialBarController : MonoBehaviour {
     [SerializeField]
     Image specialBarFill;
     [SerializeField]
-    Image specialIcon;
+    Image specialIcon1;
+    [SerializeField]
+    Image specialIcon2;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         specialBarFill.fillAmount = 0.0f;
 	}
 	
@@ -38,12 +40,14 @@ public class SpecialBarController : MonoBehaviour {
 
     private void SpecialUnavaliable()
     {
-        specialIcon.enabled = false;
+        specialIcon1.enabled = false;
+        specialIcon2.enabled = false;
     }
 
     private void SpecialAvaliable()
     {
 
-        specialIcon.enabled = true;
+        specialIcon1.enabled = true;
+        specialIcon2.enabled = true;
     }
 }

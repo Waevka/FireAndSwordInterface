@@ -40,19 +40,25 @@ public class Item : MonoBehaviour {
         itemImage = _itemImage;
         itemType = _type;
         itemImageField.sprite = itemImage;
+        itemValue = _itemValue;
+        //TODO: set icon by type
+        itemNameTextField.text = itemName;
         switch (itemType)
         {
             case ItemType.HEALTH:
                 itemIconField.sprite = itemEffectIcons[0];
+                itemEffectDescriptionField.text = itemValue + "%";
                 break;
             case ItemType.SPEED:
                 itemIconField.sprite = itemEffectIcons[1];
+                itemEffectDescriptionField.text = itemValue + "%";
                 break;
+            default:
+                itemIconField.sprite = itemEffectIcons[2];
+                itemEffectDescriptionField.text = itemValue + "pcs";
+                break;
+
         }
-        //TODO: set icon by type
-        itemNameTextField.text = itemName;
-        itemValue = _itemValue;
-        itemEffectDescriptionField.text = itemValue + "%";
     }
     
     public ItemType GetItemType()

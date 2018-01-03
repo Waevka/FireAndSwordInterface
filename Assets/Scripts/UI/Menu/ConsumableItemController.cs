@@ -113,9 +113,9 @@ public class ConsumableItemController : MonoBehaviour {
     private void TestFill()
     {
         items[0].GetComponent<Item>().Initialize("Speed", imageList[0], ItemType.SPEED, 25);
-        items[1].GetComponent<Item>().Initialize("Healing", imageList[0], ItemType.HEALTH, 25);
-        items[2].GetComponent<Item>().Initialize("Healing", imageList[0], ItemType.HEALTH, 75);
-        items[3].GetComponent<Item>().Initialize("Bleeding", imageList[0], ItemType.BLEEDING, 1);
+        items[1].GetComponent<Item>().Initialize("Healing", imageList[1], ItemType.HEALTH, 25);
+        items[2].GetComponent<Item>().Initialize("Healing", imageList[2], ItemType.HEALTH, 75);
+        items[3].GetComponent<Item>().Initialize("Bleeding", imageList[3], ItemType.BLEEDING, 1);
     }
 
     public void ConsumeItem(bool success)

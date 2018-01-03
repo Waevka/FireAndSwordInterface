@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class SpeedTextController : MonoBehaviour {
     [SerializeField]
     Text speedText;
+    Color defaultTextColor;
 	// Use this for initialization
 	void Start () {
-		
+        defaultTextColor = new Color(182.0f/255.0f, 149.0f/255.0f, 9.0f/255.0f);
 	}
 	
 	// Update is called once per frame
@@ -26,6 +27,6 @@ public class SpeedTextController : MonoBehaviour {
     public void Deactivate()
     {
         speedText.text = Player.Instance.GetSpeed() + "%";
-        speedText.color = Color.black;
+        speedText.color = defaultTextColor;
     }
 }
