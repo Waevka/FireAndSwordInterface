@@ -25,6 +25,12 @@ public class Enemy : MonoBehaviour {
         if(collision.gameObject.tag == "Player")
         {
             Player.Instance.DamagePlayer(strength);
+            if (isStronger)
+            {
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(
+                    new Vector3(0.0f, 1000.0f, 0.0f) + (-Player.Instance.gameObject.transform.forward * 1000.0f),
+                    ForceMode.Impulse);
+            }
         }
     }
 
