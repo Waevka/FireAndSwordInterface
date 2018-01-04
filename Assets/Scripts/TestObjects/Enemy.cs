@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour {
     {
         canBeDamaged = false;
         Player.Instance.AddSpecialPoints(10.0f);
-        Player.Instance.AddLevelProgress(0.1f);
-        Destroy(gameObject, 0.5f);
+        Player.Instance.AddLevelProgress(0.05f);
+        Destroy(gameObject);
     }
 }
