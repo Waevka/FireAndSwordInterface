@@ -53,7 +53,8 @@ public class StatusEffectController : MonoBehaviour {
         for(int i = 0; i < statusEffectPanels.Count; i++)
         {
             statusEffectPanels[i].GetComponent<StatusEffectItem>().Initialize(
-                statusEffects[i], statusEffects[i].GetEffectType(), statusEffectImage[(int)statusEffects[i].GetEffectType()]);
+                statusEffects[i], statusEffects[i].GetEffectType(), statusEffectImage[(int)statusEffects[i].GetEffectType()],
+                statusEffects[i].description);
         }
     }
 

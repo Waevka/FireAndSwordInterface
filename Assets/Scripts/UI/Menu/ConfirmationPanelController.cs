@@ -12,11 +12,11 @@ public class ConfirmationPanelController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Fire1"))
         {
             cic.ConsumeItem(true);
         }
-        else if (Input.GetButtonDown("Cancel"))
+        else if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("Fire2"))
         {
             cic.ConsumeItem(false);
         }

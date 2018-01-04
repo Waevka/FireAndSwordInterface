@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour {
         {
             animationPlayer.PlayAnimation("BasicStun", 10.0f, 0.750f);
         }
-        if (Input.GetButtonDown("Submit")
+        if (Input.GetButtonDown("Submit") || (Input.GetAxisRaw("RT") != 0 && Input.GetAxisRaw("LT") != 0.0)
             && Player.Instance.IsSpecialAvaliable())
         {
             animationPlayer.PlayAnimation("SuperAttack", 300.0f, 1.417f);

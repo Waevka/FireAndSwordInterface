@@ -33,6 +33,8 @@ public class Player : MonoBehaviour {
     private float levelProgress;
     [SerializeField]
     private float currentDamage;
+    [SerializeField]
+    GameObject questFinishedText;
 
     public static Player Instance
     {
@@ -64,9 +66,9 @@ public class Player : MonoBehaviour {
         statusEffects = new List<StatusEffect>();
         statusEffects.Add(Instantiate(SEPrefab).GetComponent<StatusEffect>());
         statusEffects.Add(Instantiate(SEPrefab).GetComponent<StatusEffect>());
-        statusEffects[0].InitializeEffect(10, StatusEffectType.BLEED);
+        statusEffects[0].InitializeEffect(60, StatusEffectType.BLEED, "Remove with [Bandage]");
         statusEffects[0].gameObject.transform.SetParent(transform, false);
-        statusEffects[1].InitializeEffect(30, StatusEffectType.ARMOR);
+        statusEffects[1].InitializeEffect(120, StatusEffectType.ARMOR, "Received via [Potion]");
         statusEffects[1].gameObject.transform.SetParent(transform, false);
     }
 	
@@ -156,7 +158,7 @@ public class Player : MonoBehaviour {
     public void AddLevelProgress(float percent)
     {
         levelProgress = Mathf.Clamp(levelProgress + percent, 0.0f, 1.0f);
-        if (levelProgress == 1.0f)
+        if (levelProgress >= 0.95f)
         {
             StartBossFight();
         }
@@ -165,6 +167,20 @@ public class Player : MonoBehaviour {
     private void StartBossFight()
     {
         //TODO
+        Debug.Log("Level finished");
+        StartCoroutine(ShowQuestCompleted());
+    }
+
+    private IEnumerator ShowQuestCompleted()
+    {
+        float currentTime = Time.time;
+        if (questFinishedText != null) questFinishedText.SetActive(true);
+        while(currentTime + 3.0f > Time.time)
+        {
+            yield return null;
+        }
+        if (questFinishedText != null) questFinishedText.SetActive(false);
+        FindObjectOfType<BlackBarsController>().ShowBars();
     }
 
     public float GetCurrentDamage()

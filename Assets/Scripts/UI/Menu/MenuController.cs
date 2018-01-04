@@ -40,6 +40,15 @@ public class MenuController : MonoBehaviour {
             currentActiveTab = Mathf.Clamp(currentActiveTab + (int)Input.GetAxisRaw("Horizontal"), 0, tabLabels.Length-1);
             UpdateActiveTabs();
         }
+        else if (Input.GetButtonDown("MenuLeft"))
+        {
+            currentActiveTab = Mathf.Clamp(currentActiveTab - 1, 0, tabLabels.Length - 1);
+            UpdateActiveTabs();
+        } else if (Input.GetButtonDown("MenuRight"))
+        {
+            currentActiveTab = Mathf.Clamp(currentActiveTab + 1, 0, tabLabels.Length - 1);
+            UpdateActiveTabs();
+        }
 	}
 
     void UpdateActiveTabs()

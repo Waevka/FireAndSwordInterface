@@ -9,6 +9,7 @@ public class StatusEffect : MonoBehaviour {
     StatusEffectType type;
     float lastUpdateTime;
     float lastEffectTickTime;
+    public string description = "";
 	// Use this for initialization
 	void Start () {
         lastUpdateTime = Time.time;
@@ -42,10 +43,11 @@ public class StatusEffect : MonoBehaviour {
         timeLeft = f;
     }
 
-    public void InitializeEffect(float time, StatusEffectType _type)
+    public void InitializeEffect(float time, StatusEffectType _type, string descr)
     {
         timeLeft = time;
         type = _type;
+        description = descr;
     }
 
     public void EndEffect()

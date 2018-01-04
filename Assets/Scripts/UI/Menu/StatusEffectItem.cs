@@ -15,6 +15,12 @@ public class StatusEffectItem : MonoBehaviour {
     Text timeLeft;
     [SerializeField]
     StatusEffect o;
+    [SerializeField]
+    Text valueText;
+    [SerializeField]
+    Text descrText;
+    [SerializeField]
+    Text nameText;
 	// Use this for initialization
 	void Start () {
 		
@@ -25,7 +31,7 @@ public class StatusEffectItem : MonoBehaviour {
         timeLeft.text = Convert.ToInt32(o.GetTimeLeft()).ToString();
     }
 
-    public void Initialize(StatusEffect _o, StatusEffectType _type, Sprite image)
+    public void Initialize(StatusEffect _o, StatusEffectType _type, Sprite image, String descr)
     {
         o = _o;
         type = _type;
@@ -34,12 +40,16 @@ public class StatusEffectItem : MonoBehaviour {
         {
             case StatusEffectType.BLEED:
                 timeLeft.color = Color.red;
+                if(valueText != null) valueText.color = Color.red;
                 break;
             case StatusEffectType.ARMOR:
             case StatusEffectType.DEFLECT:
                 timeLeft.color = Color.green;
+                if(valueText != null) valueText.color = Color.green;
                 break;
         }
+        if (descrText != null) descrText.text = descr;
+        if (nameText != null) nameText.text = type.ToString();
     }
 
     public StatusEffectType GetEffectType()
